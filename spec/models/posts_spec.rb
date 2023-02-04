@@ -76,4 +76,8 @@ RSpec.describe Post, type: :model do
     subject.likes_counter = -1
     expect(subject).to_not be_valid
   end
+
+  it 'should return 5 latest comments' do
+    expect(subject.latest_comments).to eq(subject.comments.order(created_at: :desc).limit(5))
+  end
 end
