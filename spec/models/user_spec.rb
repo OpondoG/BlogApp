@@ -56,4 +56,7 @@ RSpec.describe User, type: :model do
     subject.posts_counter = 0
     expect(subject).to be_valid
   end
+  it 'should return 5 latest posts' do
+    expect(subject.latest_posts).to eq(subject.posts.order(created_at: :desc).limit(5))
+  end
 end
