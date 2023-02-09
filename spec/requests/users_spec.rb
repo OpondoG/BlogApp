@@ -15,7 +15,7 @@ RSpec.describe 'Users', type: :request do
     end
 
     it 'should include correct placeholder' do
-      expect(response.body).to include("Here are ALL Posts for a given user you are in '/users'")
+      expect(response.body).to include("Here is a single Post for a given user you are in '/users'")
     end
   end
 
