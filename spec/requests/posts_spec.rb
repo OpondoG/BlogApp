@@ -33,7 +33,7 @@ RSpec.describe 'Posts', type: :request do
     end
 
     it 'should include correct placeholder' do
-      expect(response.body).to include("Here is a single Post for a given user you are in '/users/user_id/posts/id")
+      expect(response.body).to include("Here is a single Post for a given user you are in '/users/user_id/posts'")
     end
   end
 end
