@@ -1,2 +1,12 @@
-<h1>users#index</h1>
-<p>Here is a single Post for a given user you are in '/users'</p>
+<div class="users_view">
+  <div class="users-container">
+    <% @users.each do |user| %>
+      <div class="user-container">
+        <div class="user-details">
+          <div class="user-name"><%= user.name %></div>
+          <div class="user-posts">Posts: <%= user.posts_counter %></div>
+        </div>
+      </div>
+    <%end%>
+  </div>
+</div>
