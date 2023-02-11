@@ -1,12 +1,22 @@
 Rails.application.routes.draw do
   root "users#index"
 
+  get 'posts/new', to: 'posts#new'
+  get 'comments/new', to: 'comments#new'
+
+  post 'posts/', to: 'posts#create'
+  post 'comments/', to: 'comments#create'
+
+  post '/users/:user_id/posts/:id/likes', to: 'likes#create'
+
   resources :users ,only:[:index,:show]do
-    resources :posts ,only:[:index,:show]
+  resources :posts, only: [:index, :create, :new, :show]
+end
+
+resources :posts do
+  resources :comments, only: [:create, :new]
+  resources :likes, only: [:create]
   end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root 'users#index', as: 'home'
-  
 end
 
 
