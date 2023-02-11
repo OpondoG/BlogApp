@@ -1,18 +1,25 @@
-<div class="posts_index_view">
-<div class="posts-container">
-  <% @posts.each do |post| %>
-    <div class="post-container">
-      <div class="post-details">
-        <div class="post-title"><%= post.title %></div>
-        <div class="post-author">Author: <%= post.author.name %></div>
-        <div class="post-comments">Comments: <%= post.comments_counter %></div>
-        <div class="post-likes">Likes: <%= post.likes_counter %></div>
-      </div>
-      <div class="post-content">
-        <div class="post-text"><%= post.text %></div>
-        <div class="post-date">Date: <%= post.created_at %></div>
-      </div>
+<div>
+  <div class="user-container">
+    <%= image_tag(@user.photo, size: "70x70") %>
+    <div class="user-info">
+      <h3><%= @user.name %></h3>
+      <p>Number of posts : </p>
     </div>
-  <%end%>
-</div> 
+  </div>
+  <% @posts.each do |post| %>
+    <%= link_to user_post_path(@user.id, post.id), class: "link-info" do %>
+      <div>
+        <%= link_to user_post_path(@user.id, post.id), class: "link-info" do %>
+          <h5><%= post.title %></h5>
+          <p><%= post.text %></p>
+        <% end %>
+      </div>
+    <% end %>
+    <div class="comments">
+      <h4>Username: Comment x</h4>
+    </div>
+  <% end %>
+  <div>
+    <button>Pagination</button>
+  </div>
 </div>

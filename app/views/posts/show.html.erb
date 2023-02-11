@@ -1,30 +1,13 @@
-<div class="show_post_view">
-    <div class="post-container">
-        <div class="post-details">
-        <div class="post-title"><%= @post.title %></div>
-        <div class="post-author">Author: <%= @post.author.name %></div>
-        <div class="post-comments">Comments: <%= @post.comments_counter %></div>
-        <div class="post-likes">Likes: <%= @post.likes_counter %></div>
+<div class="users-container">
+  <% @users.each do |user| %>
+    <div class="user-container">
+      <%= image_tag(user.photo, size: "70x70") %>
+      <%= link_to user_path(user.id), class:"link-info" do %>
+        <div class="user-info">
+          <h3><%= user.name %></h3>
+          <p>Number of posts: <%= user.posts_counter %></p>
         </div>
-        <div class="post-content">
-        <div class="post-text"><%= @post.text %></div>
-        <div class="post-date">Date: <%= @post.created_at %></div>
-        </div>
+      <% end %>
     </div>
-    <div class="post-comments">
-        <div class="comments-container">
-        <% @post.comments.each do |comment| %>
-            <div class="comment-container">
-            <div class="comment-details">
-                <div class="comment-author">Author: <%= comment.author.name %></div>
-                <div class="comment-likes">Likes: <%= comment.likes_counter %></div>
-            </div>
-            <div class="comment-content">
-                <div class="comment-text"><%= comment.text %></div>
-                <div class="comment-date">Date: <%= comment.created_at %></div>
-            </div>
-            </div>
-        <%end%>
-        </div>
-    </div>
+  <% end %>
 </div>
