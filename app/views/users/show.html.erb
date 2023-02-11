@@ -1,33 +1,30 @@
-<div class="users_show_view">
+<div>
   <div class="user-container">
-    <div class="user-details">
-      <div class="user-name"><%= @user.name %></div>
-      <div class="user-posts">Posts: <%= @user.posts_counter %></div>
-      <div class="user-comments">Comments: <%= @user.comments_counter %></div>
-      <div class="user-likes">Likes: <%= @user.likes_counter %></div>
-    </div>
-    <div class="user-content">
-      <div class="user-text"><%= @user.text %></div>
-      <div class="user-date">Date: <%= @user.created_at %></div>
+    <%= image_tag(@user.photo + "images/rss.jpg", size: "50x50") %>
+
+    <div class="user-info">
+      <h5><%= @user.name %></h5>
+      <p>Number of posts : </p>
     </div>
 
-    <div class="user-posts">
-      <div class="posts-container">
-        <% @user.posts.each do |post| %>
-          <div class="post-container">
-            <div class="post-details">
-              <div class="post-title"><%= post.title %></div>
-              <div class="post-author">Author: <%= post.author.name %></div>
-              <div class="post-comments">Comments: <%= post.comments_counter %></div>
-              <div class="post-likes">Likes: <%= post.likes_counter %></div>
-            </div>
-            <div class="post-content">
-              <div class="post-text"><%= post.text %></div>
-              <div class="post-date">Date: <%= post.created_at %></div>
-            </div>
-          </div>
-        <%end%>
-      </div>
+  </div>
+  <div>
+    <div>
+      <h5>Bio</h5>
+      <p><%= @user.bio %></p>
     </div>
+    <% @user.three_most_recent_posts.each do |post| %>
+      <div>
+        <%= link_to user_post_path(@user.id, post.id), class: "link-info" do %>
+          <h5><%= post.title %></h5>
+          <p><%= post.text %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <%= link_to user_posts_path(@user.id), class: "link-info" do %>
+      <button>See all posts</button>
+    <% end %>
   </div>
 </div>
