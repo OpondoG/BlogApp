@@ -11,3 +11,22 @@
     </div>
   <% end %>
 </div>
+
+<%= form_with model: @like, url: user_post_path(post_id: @post.id) do |f| %>
+  <%= f.submit "Like" %>
+<% end %>
+
+<div class="postBody">
+  <p><%=@post.text%></p>
+</div>
+
+<button>
+</div>
+
+<div class="postcomments">
+  <div class="comments">
+    <% @post.most_recent_comments.each do |comment| %> 
+      <p><%= comment.author.name %> : <%= comment.text %> </p>
+    <% end %>
+  </div>
+</div>
