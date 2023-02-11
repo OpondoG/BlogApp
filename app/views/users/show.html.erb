@@ -1,2 +1,30 @@
-<h1>User#show</h1>
-<p>Here is a single Post for a given user you are in '/users/user_id'</p>
+<div>
+  <div class="user-container">
+    <%= image_tag(@user.photo + "images/rss.jpg", size: "50x50") %>
+
+    <div class="user-info">
+      <h5><%= @user.name %></h5>
+      <p>Number of posts : </p>
+    </div>
+
+  </div>
+  <div>
+    <div>
+      <h5>Bio</h5>
+      <p><%= @user.bio %></p>
+    </div>
+    <% @user.three_most_recent_posts.each do |post| %>
+      <div>
+        <%= link_to user_post_path(@user.id, post.id), class: "link-info" do %>
+          <h5><%= post.title %></h5>
+          <p><%= post.text %></p>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <%= link_to user_posts_path(@user.id), class: "link-info" do %>
+      <button>See all posts</button>
+    <% end %>
+  </div>
+</div>

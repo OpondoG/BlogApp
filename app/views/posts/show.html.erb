@@ -1,2 +1,13 @@
-<h1>Posts#show</h1>
-<p>Here is a single Post for a given user you are in '/users/user_id/posts'</p>
+<div class="users-container">
+  <% @users.each do |user| %>
+    <div class="user-container">
+      <%= image_tag(user.photo, size: "70x70") %>
+      <%= link_to user_path(user.id), class:"link-info" do %>
+        <div class="user-info">
+          <h3><%= user.name %></h3>
+          <p>Number of posts: <%= user.posts_counter %></p>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
