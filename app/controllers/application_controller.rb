@@ -3,9 +3,10 @@ class ApplicationController < ActionController::Base
   def current_post
     User.first.posts.first
   end
+
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :bio, :posts_counter, :photo])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name bio posts_counter photo])
   end
 end
