@@ -1,29 +1,17 @@
-<div>
-  <div class="user-container">
 
-    <div class="user-info">
-      <h5><%= @user.name %></h5>
-      <p>Number of posts : </p>
-    </div>
-
-  </div>
-  <div>
-    <div>
-      <h5>Bio</h5>
-      <p><%= @user.bio %></p>
-    </div>
-    <% @user.three_most_recent_posts.each do |post| %>
-      <div>
-        <%= link_to user_post_path(@user.id, post.id), class: "link-info" do %>
-          <h5><%= post.title %></h5>
-          <p><%= post.text %></p>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-  <div>
-    <%= link_to user_posts_path(@user.id), class: "link-info" do %>
-      <button>See all posts</button>
-    <% end %>
-  </div>
+<div class="cardx">
+  <%= render 'shared/user-card', user: @user %>
+</div> 
+<ul class="user-details">
+<div class="bio-section card">
+    <h2 class="bio-heading">Bio</h2>
+    <p class="bio-text"><%= @user.bio %></p>
 </div>
+
+<ul class="post-list">
+  <% @user.recent_posts.each_with_index do |post, index| %>
+   <%= render 'shared/post-card', post: post, user: @user,index: post.id, brief: true, comment: false, all: false %>
+  <% end %>
+</ul>
+  <%= link_to 'See All Posts', "#{@user.id}/posts", class: 'link-btn' %>
+</ul>

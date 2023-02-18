@@ -1,23 +1,22 @@
 Rails.application.routes.draw do
-  devise_for :users
-  root "users#index"
+  root "users#index", as: :start
 
-  get 'posts/new', to: 'posts#new'
-  get 'comments/new', to: 'comments#new'
+  # Users
+  get 'users/:id' => 'users#show', as: :user_id
 
-  post 'posts/', to: 'posts#create'
-  post 'comments/', to: 'comments#create'
+  # Posts
+  get 'users/:user_id/posts' => 'posts#index', as: :all_post
+  get 'users/:user_id/posts/new' => 'posts#new', as: :post_new
+  post 'users/:user_id/posts/new' => 'posts#create', as: :post
+  get 'users/:user_id/posts/:id' => 'posts#show', as: :post_id
 
-  post '/users/:user_id/posts/:id/likes', to: 'likes#create'
+  #Comments
 
-  resources :users ,only:[:index,:show]do
-  resources :posts, only: [:index, :create, :new, :show]
+  get 'users/:user_id/posts/:id/comments/new' => 'comments#new', as: :comments_new
+  post 'users/:user_id/posts/:id/comments' => 'comments#create', as: :comment
+
+  #likes
+  get 'users/:user_id/posts/:id/likes/new' => 'likes#create', as: :likes_create
+
 end
 
-resources :posts do
-  resources :comments, only: [:create, :new]
-  resources :likes, only: [:create]
-  end
-end
-
-                                                                                                                                                                                              
