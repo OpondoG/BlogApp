@@ -19,3 +19,4 @@ Rails.application.routes.draw do
   get 'users/:user_id/posts/:id/likes/new' => 'likes#create', as: :likes_create
 
 end
+

@@ -120,7 +120,7 @@ OR
 👤 **Gilbert Okonjo**
 
 - GitHub: [@githubhandle](https://github.com/OpondoG)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle
+- LinkedIn: [@linkedinn](https://www.linkedin.com/in/gilbert-okonjo/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
