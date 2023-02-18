@@ -1,25 +1,8 @@
-<div>
-  <div class="user-container">
-    <%= image_tag(@user.photo, size: "70x70") %>
-    <div class="user-info">
-      <h3><%= @user.name %></h3>
-      <p>Number of posts : </p>
-    </div>
-  </div>
-  <% @posts.each do |post| %>
-    <%= link_to user_post_path(@user.id, post.id), class: "link-info" do %>
-      <div>
-        <%= link_to user_post_path(@user.id, post.id), class: "link-info" do %>
-          <h5><%= post.title %></h5>
-          <p><%= post.text %></p>
-        <% end %>
-      </div>
+<div class="post-container">
+  <%= render partial: 'shared/user-card', locals: { user: @user } %>
+  <% @user.recent_posts.each_with_index do |post, index| %>
+    <%= link_to post_id_path(@user, post), class: 'post-card-link' do %>
+      <%= render 'shared/post-card', post: post, id: post.id, brief: true, comment: true, all: false %>
     <% end %>
-    <div class="comments">
-      <h4>Username: Comment x</h4>
-    </div>
   <% end %>
-  <div>
-    <button>Pagination</button>
-  </div>
 </div>

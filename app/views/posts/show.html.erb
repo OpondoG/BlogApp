@@ -1,32 +1,5 @@
-<div class="users-container">
-  <% @users.each do |user| %>
-    <div class="user-container">
-      <%= image_tag(user.photo, size: "70x70") %>
-      <%= link_to user_path(user.id), class:"link-info" do %>
-        <div class="user-info">
-          <h3><%= user.name %></h3>
-          <p>Number of posts: <%= user.posts_counter %></p>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
-</div>
-
-<%= form_with model: @like, url: user_post_path(post_id: @post.id) do |f| %>
-  <%= f.submit "Like" %>
-<% end %>
-
-<div class="postBody">
-  <p><%=@post.text%></p>
-</div>
-
-<button>
-</div>
-
-<div class="postcomments">
-  <div class="comments">
-    <% @post.most_recent_comments.each do |comment| %> 
-      <p><%= comment.author.name %> : <%= comment.text %> </p>
-    <% end %>
-  </div>
+<div class="post-container">
+  <%= render 'shared/post-card', post: @post, id: @post.id, brief: false, comment: true, all: true %>
+  <%= link_to 'Comment ', "#{request.url}/comments/new", class: 'comment-btn' %>
+  <%= link_to 'Like ', "#{request.url}/likes/new", class: 'comment-btn' %>
 </div>
